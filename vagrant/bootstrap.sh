@@ -58,7 +58,8 @@ systemctl disable apache2
 systemctl stop apache2
 apt-get install -y nginx
 mv /home/vagrant/nginx.conf /etc/nginx/nginx.conf
-mv /home/vagrant/app.conf /etc/nginx/sites-enabled/app.conf
+mv /home/vagrant/volkovysk.conf /etc/nginx/sites-enabled/volkovysk.conf
+mv /home/vagrant/printmoment.conf /etc/nginx/sites-enabled/printmoment.conf
 rm /etc/nginx/sites-enabled/default
 systemctl restart nginx
 systemctl enable nginx

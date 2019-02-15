@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set timezone
-ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+#ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 apt-get update
 apt-get install -y curl git unzip
@@ -15,14 +15,11 @@ mv /home/vagrant/my.cnf /etc/my.cnf
 systemctl restart mysql
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';"
 
-# Install php 7.1
-add-apt-repository ppa:ondrej/php
+# Install php 7.2
 apt-get update
-apt-get install -y php7.1
-apt-get install -y php-pear php7.1-fpm php7.1-mysql php7.1-mbstring php7.1-mcrypt php7.1-xml php7.1-gd php7.1-zip php7.1-curl php7.1-intl php7.1-dev
-pecl install xdebug
+apt-get install -y apache2 git curl php7.2 php7.2-fpm php7.2-mysqli php7.2-bcmath php7.2-bz2 php7.2-cli php7.2-curl php7.2-intl php7.2-json php7.2-mbstring php7.2-opcache php7.2-soap php7.2-sqlite3 php7.2-xml php7.2-xsl php7.2-zip php7.2-pgsql php7.2-xdebug libapache2-mod-php7.2
 
-mkdir -p /vagrant/www/tmp/profile
+mkdir -p /vagrant/www/html/tmp/profile
 
 xdebug= `cat <<EOS
 zend_extension=/usr/lib/php/20160303/xdebug.so
@@ -45,8 +42,8 @@ xdebug.remote_port = 9001
 xdebug.idekey = "phpstorm"
 EOS`
 
-echo $xdebug >> /etc/php/7.1/fpm/php.ini
-echo $xdebug >> /etc/php/7.1/cli/php.ini
+echo $xdebug >> /etc/php/7.2/fpm/php.ini
+echo $xdebug >> /etc/php/7.2/cli/php.ini
 
 cd /tmp
 curl -sS https://getcomposer.org/installer | php
@@ -65,14 +62,14 @@ systemctl restart nginx
 systemctl enable nginx
 
 # Install Redis
-apt-get -y install redis-server
+#apt-get -y install redis-server
 
 # Install nodejs, npm, yarn
-apt-get install -y nodejs npm
-npm cache clean
-npm install n -g
-n 8.9
-apt-get purge -y nodejs npm
-ln -sf /usr/local/bin/node /usr/bin/node
-ln -sf /usr/local/bin/npm /usr/bin/npm
-npm install -g yarn
+#apt-get install -y nodejs npm
+#npm cache clean
+#npm install n -g
+#n 8.9
+#apt-get purge -y nodejs npm
+#ln -sf /usr/local/bin/node /usr/bin/node
+#ln -sf /usr/local/bin/npm /usr/bin/npm
+#npm install -g yarn

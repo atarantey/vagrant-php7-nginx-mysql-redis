@@ -3,8 +3,8 @@
 ## tools
 
 * nginx
-* php7.1
-* php7.1-fpm
+* php7.2
+* php7.2-fpm
 * composer
 * mysql5.7
 * redis
@@ -15,7 +15,7 @@
 
 ### nginx
 * port: 80
-* connect with php7.1-fpm via unix socket
+* connect with php7.2-fpm via unix socket
 
 ### php-fpm
 * xdebug port: 9001
